@@ -1,0 +1,339 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+/* Small phones line iPhone 5 SE */
+@media screen and (max-width:374px) {
+    .wrapper{
+        display: flex;
+        justify-content: center;
+    }
+    .result-box{
+        margin-top: 5%;
+        position: relative;
+        font-size: 1.5rem;
+    }
+    
+    .box{
+        background-color: rgb(78, 109, 102);
+        border-radius: 5%;
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        top: 200px;
+        height: 30vh;
+    }
+    .header{
+        position: relative;
+        top: 5px
+    }
+h3 {
+    position: relative;
+    left: 5%;
+}
+p {
+    position: relative;
+    left:5%
+}
+img {
+    position: relative;
+    left: 10%;
+}
+h2 {
+    position: relative;
+    left: 5%;
+    top: 10px;
+    font-size: 1.5rem;
+}
+#label-search{
+    position: relative;
+    left: 15%;
+    top: 10px;
+    font-size: 1.15rem;
+    font-family: 'Times New Roman', Times, serif;
+}
+#searchBar{
+    position: relative;
+    top: 10px;
+    height: 3vh;
+    text-align: center;
+    left: 15%;
+    font-size: 2vh;
+}
+#label-language{
+    position: relative;
+    top: 15px;
+    left: 15%;
+    font-size: 1.15rem;
+}
+#language-bar{
+    position: relative;
+    top: 12.5px;
+    left: 15%;
+}
+#label-dept{
+    position: relative;
+    top: 20px;
+    font-size: 1.15rem;
+    left: 15%;
+}
+#kitchenArea{
+    position: relative;
+    top: 20px;
+    left: 18.5%;
+}
+
+#submit-btn{
+    position: relative;
+    right: 20%;
+    width: 12vh;
+    font-size: large;
+    top: 50px;
+}
+
+.home{
+    position: relative;
+    top: 32.5px;
+    left: 5%;
+    font-size: 1.5rem;
+}
+#home-btn{
+    width: 10vh;
+    background-color: red;
+    border-radius: 10%;
+    height: 4vh;
+}
+}
+/* Regular phones like Iphone X + */
+@media only screen and (min-width:375px) {
+    .wrapper{
+        display: flex;
+        justify-content: center;
+    }
+    .result-box{
+        margin-top: 5%;
+        position: relative;
+        font-size: 1.5rem;
+    }
+    
+    .box{
+        background-color: rgb(78, 109, 102);
+        border-radius: 5%;
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        top: 25px;
+        height: 30vh;
+    }
+    .header{
+        position: relative;
+        top: 5px
+    }
+h3 {
+    position: relative;
+    left: 10%;
+}
+p {
+    position: relative;
+    left:15%
+}
+img {
+    position: relative;
+    left: 15%;
+}
+h2 {
+    position: relative;
+    left: 5%;
+    top: 10px;
+    font-size: 2rem;
+}
+#label-search{
+    position: relative;
+    left: 15%;
+    top: 10px;
+    font-size: 1.5rem;
+    font-family: 'Times New Roman', Times, serif;
+}
+#searchBar{
+    position: relative;
+    top: 10px;
+    height: 3vh;
+    text-align: center;
+    left: 15%;
+    font-size: 2vh;
+}
+#label-language{
+    position: relative;
+    top: 15px;
+    left: 15%;
+    font-size: 1.5rem;
+}
+#language-bar{
+    position: relative;
+    top: 12.5px;
+    left: 15%;
+}
+#label-dept{
+    position: relative;
+    top: 20px;
+    left: 15%;
+    font-size: 1.5rem;
+}
+#kitchenArea{
+    position: relative;
+    top: 17px;
+    left: 20%;
+}
+
+#submit-btn{
+    position: relative;
+    right: 20%;
+    width: 12vh;
+    font-size: large;
+    top: 60px;
+}
+
+.home{
+    position: relative;
+    top: 70px;
+    left: 5%;
+    font-size: 1.5rem;
+}
+#home-btn{
+    width: 10vh;
+    background-color: red;
+    border-radius: 10%;
+    height: 4vh;
+}
+}
+
+/* iphone 12max */
+@media only screen and (min-width:420px){
+    .wrapper{
+        display: flex;
+        justify-content: center;
+    }
+    .result-box{
+        margin-top: 5%;
+        position: relative;
+        font-size: 1.5rem;
+    }
+    
+    .box{
+        background-color: rgb(78, 109, 102);
+        border-radius: 5%;
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        top: 25px;
+        height: 30vh;
+    }
+    .header{
+        position: relative;
+        top: 5px
+    }
+h3 {
+    position: relative;
+    left: 10%;
+}
+p {
+    position: relative;
+    left:15%
+}
+img {
+    position: relative;
+    left: 15%;
+}
+h2 {
+    position: relative;
+    left: 5%;
+    top: 10px;
+    font-size: 2rem;
+}
+#label-search{
+    position: relative;
+    left: 15%;
+    top: 10px;
+    font-size: 1.5rem;
+    font-family: 'Times New Roman', Times, serif;
+}
+#searchBar{
+    position: relative;
+    top: 10px;
+    height: 3vh;
+    text-align: center;
+    left: 15%;
+    font-size: 2vh;
+}
+#label-language{
+    position: relative;
+    top: 15px;
+    left: 15%;
+    font-size: 1.5rem;
+}
+#language-bar{
+    position: relative;
+    top: 12.5px;
+    left: 15%;
+}
+#label-dept{
+    position: absolute;
+    top: 120px;
+    font-size: 1.5rem;
+}
+#kitchenArea{
+    position: absolute;
+    top: 127px;
+    left: 40%;
+}
+
+#submit-btn{
+    position: absolute;
+    width: 12vh;
+    font-size: large;
+    top: 160px;
+    right: 30%;
+}
+
+.home{
+    position: absolute;
+    top: 195px;
+    left: 5%;
+    font-size: 1.5rem;
+}
+#home-btn{
+    width: 10vh;
+    background-color: red;
+    border-radius: 10%;
+    height: 4vh;
+}
+.blank{
+    position: relative;
+    top: 100px;
+    color: rgba(255, 0, 0, 0);
+}
+}
+
+/* landscape mobile devices */
+@media only screen and (min-width:480px){
+}
+
+/* tablet portrait */
+@media only screen and (min-width:768px){
+}
+
+/* tablet landscape */ 
+@media only screen and (min-width:1024px){
+}
+
+/*Small Monitor Screen */
+@media only screen and (min-width:1280px){}
+/* med Monitor Screen */
+@media only screen and (min-width:1440px){}
+
+
+/* Large Monitor */
+@media only screen and (min-width:1920px){}

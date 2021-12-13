@@ -1,0 +1,31 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+/* Small phones line iPhone 5 SE */
+@media screen and (max-width:374px) {
+}
+/* Regular phones like Iphone X + */
+@media only screen and (min-width:375px) {
+}
+
+/* landscape mobile devices */
+@media only screen and (min-width:480px){
+}
+
+/* tablet portrait */
+@media only screen and (min-width:768px){
+}
+
+/* tablet landscape */ 
+@media only screen and (min-width:1024px){
+}
+
+/*Small Monitor Screen */
+@media only screen and (min-width:1280px){}
+/* med Monitor Screen */
+@media only screen and (min-width:1440px){}
+
+
+/* Large Monitor */
+@media only screen and (min-width:1920px){}

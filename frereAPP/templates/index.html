@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%load static%}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This an app to help cummunicate kitchen staff in varius language by the usage of pictures and single words or phrases.">
+    <link rel="icon" href="{% static 'img/handShake.png' %}">
+    <meta name="author" content="Carlos R. Caceres Martinez">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <meta name="keywords" content="Kitchen, safety, translation, kitchenware,">
+    <title>Mon Frère</title>
+</head>
+<body>
+    <div class="errors">
+        {%if messages%}
+        <ul>
+            {%for message in messages%}
+            <li>{{message}}</li>
+            {%endfor%}
+        </ul>
+        {%endif%}
+    </div>
+    <div class="wrapper">
+        <div class="box">
+            <div class="box-header">
+                <h1>Welcome</h1>
+            </div>
+            <form action="/team" method="POST">
+                {% csrf_token %}
+                <input type="text" name="teamName" id="teamName" placeholder="Enter Team Name">
+                <button type="submit">Enter</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

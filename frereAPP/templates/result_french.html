@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/result.css' %}">
+    <title>{{teams.name}} | Result</title>
+</head>
+<body>
+    <div class="errors">
+        {%if messages%}
+        <ul>
+            {%for message in messages%}
+            <li>{{message}}</li>
+            {%endfor%}
+        </ul>
+        {%endif%}
+    </div>
+    <div class="result-box">
+        {% for items in something %}
+            <h3>{{items.section.name}} - {{items.item}}</h3>
+            <img src="{{items.html_tag}}" style="width: 250px; height:250px;"alt={{items.item}}>
+            <p>Françaises: {{items.item_french}}</p>
+        {% endfor %}
+    </div>
+    <div class="wrapper">
+        <div class="box">
+            <div class="header">
+                <h2>Find New Item</h2>
+                <form action="/result" method="POST">
+                    {%csrf_token%}
+                    <label for="search" id="label-search">Search:</label>
+                    <input type="text" name="search" id="searchBar" placeholder="Enter Item">
+                    <label for="language" id="label-language">Language</label>
+                    <select 
+                        name="language" id="language-bar">
+                        <option value="english"></option>
+                        <option value="french">Françaises</option>
+                        <option value="spanish">Español</option>
+                        <option value="english">English</option>
+                    </select>
+                    <label for="dept" id="label-dept">Section:</label>
+                    <select name="dept" id="kitchenArea">
+                        <option value="all">All Sections</option>
+                        <option value="dmo">DMO</option>
+                        <option value="boh">Back of House</option>
+                        <option value="foh">Front of House</option>
+                    </select>
+                    <button type="submit" id="submit-btn">Enter</button>
+                </form>
+                <div class="home">
+                    <form action="/dashboard">
+                        {% csrf_token %}
+                        <input type="hidden">
+                        <button type="Submit" id="home-btn">Home</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

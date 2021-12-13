@@ -1,0 +1,239 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: rgb(10, 144, 233);
+    width: 100%;
+}
+/* Small phones line iPhone 5 SE */
+@media screen and (max-width:374px) {
+    .wrapper{
+        display: flex;
+        justify-content: center;
+    }
+    .box {
+        border: 1px solid black;
+        position: relative;
+        top: 50px;
+        height: 12rem;
+        width: 75%;
+        border-radius:5%;
+        background-color: rgba(128, 128, 128, 0.466) ;
+        backdrop-filter: blur(10px)
+}
+    .box-header{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        font-size: 2vh;
+    }
+    .form{
+        /* border: solid 1px black; */
+    }
+    #teamName{
+        border: coral 1px solid;
+        width: 80%;
+        position: relative;
+        left: 10%;
+        height: 7vh;
+        font-size: 3vh;
+        text-align: center;
+    }
+button {
+    position: relative;
+    width: 45%;
+    height: 4vh;
+    top: 10px;
+    left: 30%;
+}
+}
+/* Regular phones like Iphone X + */
+@media only screen and (min-width:375px) {
+    .wrapper{
+        display: flex;
+        justify-content: center;
+    }
+    .box {
+        border: 1px solid black;
+        position: relative;
+        top: 250px;
+        height: 12rem;
+        width: 75%;
+        border-radius:5%;
+        background-color: rgba(128, 128, 128, 0.466) ;
+        backdrop-filter: blur(10px)
+}
+    .box-header{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        font-size: 2vh;
+    }
+    .form{
+        /* border: solid 1px black; */
+    }
+    #teamName{
+        border: coral 1px solid;
+        width: 80%;
+        position: relative;
+        left: 10%;
+        height: 7vh;
+        font-size: 3vh;
+        text-align: center;
+    }
+button {
+    position: relative;
+    width: 45%;
+    height: 4vh;
+    top: 10px;
+    left: 30%;
+}
+.errors{
+    position: relative;
+    left: 15%;
+    font-size: 5vh;
+    top: 100px;
+    color: red;
+}
+
+}
+
+/* landscape */
+@media only screen and (min-width:480px){
+    .wrapper{
+        display: flex;
+        justify-content: center;
+    }
+    .box {
+        border: 1px solid black;
+        position: relative;
+        top: 50px;
+        height: 12rem;
+        width: 75%;
+        border-radius:5%;
+        background-color: rgba(128, 128, 128, 0.466) ;
+        backdrop-filter: blur(10px)
+}
+    .box-header{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        font-size: 2vh;
+    }
+    .form{
+        /* border: solid 1px black; */
+    }
+    #teamName{
+        border: coral 1px solid;
+        width: 80%;
+        position: relative;
+        left: 10%;
+        height: 7vh;
+        font-size: 3vh;
+        text-align: center;
+    }
+button {
+    position: relative;
+    width: 45%;
+    height: 4vh;
+    top: 10px;
+    left: 30%;
+}
+}
+
+/* tablet portrait */
+@media only screen and (min-width:768px){
+    .wrapper{
+        display: flex;
+        justify-content: center;
+    }
+    .box {
+        border: 1px solid black;
+        position: relative;
+        top: 50px;
+        height: 12rem;
+        width: 75%;
+        border-radius:5%;
+        background-color: rgba(128, 128, 128, 0.466) ;
+        backdrop-filter: blur(10px)
+}
+    .box-header{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        font-size: 2vh;
+    }
+    .form{
+        /* border: solid 1px black; */
+    }
+    #teamName{
+        border: coral 1px solid;
+        width: 80%;
+        position: relative;
+        left: 10%;
+        height: 7vh;
+        font-size: 3vh;
+        text-align: center;
+    }
+button {
+    position: relative;
+    width: 45%;
+    height: 4vh;
+    top: 10px;
+    left: 30%;
+}
+}
+
+/* tablet landscape */ 
+@media only screen and (min-width:1024px){
+    .wrapper{
+        display: flex;
+        justify-content: center;
+    }
+    .box {
+        border: 1px solid black;
+        position: relative;
+        top: 50px;
+        height: 12rem;
+        width: 75%;
+        border-radius:5%;
+        background-color: rgba(128, 128, 128, 0.466) ;
+        backdrop-filter: blur(10px)
+}
+    .box-header{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        font-size: 2vh;
+    }
+    .form{
+        /* border: solid 1px black; */
+    }
+    #teamName{
+        border: coral 1px solid;
+        width: 80%;
+        position: relative;
+        left: 10%;
+        height: 7vh;
+        font-size: 3vh;
+        text-align: center;
+    }
+button {
+    position: relative;
+    width: 45%;
+    height: 4vh;
+    top: 10px;
+    left: 30%;
+}
+}
+
+/*Small Monitor Screen */
+@media only screen and (min-width:1280px){}
+/* med Monitor Screen */
+@media only screen and (min-width:1440px){}
+
+
+/* Large Monitor */
+@media only screen and (min-width:1920px){}
