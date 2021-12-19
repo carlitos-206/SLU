@@ -28,25 +28,24 @@
     <div class="wrapper">
         <div class="box">
             <div class="header">
-                <h2>Find New Item</h2>
+                <h2>Chercher à nouveau</h2>
                 <form action="/result" method="POST">
                     {%csrf_token%}
-                    <label for="search" id="label-search">Search:</label>
+                    <label for="search" id="label-search">Chercher:</label>
                     <input type="text" name="search" id="searchBar" placeholder="Enter Item">
-                    <label for="language" id="label-language">Language</label>
+                    <label for="language" id="label-language">Langue</label>
                     <select 
                         name="language" id="language-bar">
-                        <option value="english"></option>
-                        <option value="french">Françaises</option>
-                        <option value="spanish">Español</option>
+                        <option value="french">Françaises - Défaut </option>
                         <option value="english">English</option>
+                        <option value="spanish">Español</option>
                     </select>
                     <label for="dept" id="label-dept">Section:</label>
                     <select name="dept" id="kitchenArea">
-                        <option value="all">All Sections</option>
-                        <option value="dmo">DMO</option>
-                        <option value="boh">Back of House</option>
-                        <option value="foh">Front of House</option>
+                        <option value="all">Toutes les rubriques</option>
+                        <option value="dmo">DMO (Le Lave-vaisselle)</option>
+                        <option value="boh">Back of House (Ceux à l'arrière)</option>
+                        <option value="foh">Front of House (Ceux d'avant)</option>
                     </select>
                     <button type="submit" id="submit-btn">Enter</button>
                 </form>

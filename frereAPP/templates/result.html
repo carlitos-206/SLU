@@ -22,8 +22,8 @@
         {% for items in something %}
             <h3>{{items.section.name}} - {{items.item}}</h3>
             <img src="{{items.html_tag}}" style="width: 250px; height:250px;"alt={{items.item}}>
-            <p>Françaises: {{items.item_french}}</p>
-            <p>Español: {{items.item_spanish}}</p>
+            <!-- <p>Françaises: {{items.item_french}}</p>
+            <p>Español: {{items.item_spanish}}</p> -->
         {% endfor %}
     </div>
     <div class="wrapper">
@@ -34,7 +34,7 @@
                     {%csrf_token%}
                     <label for="search" id="label-search">Search:</label>
                     <input type="text" name="search" id="searchBar" placeholder="Enter Item">
-                    <label for="language" id="label-language">Language<span style="font-weight: bold;">(USED)</span>:</label>
+                    <label for="language" id="label-language">Language</span>:</label>
                     <select 
                         name="language" id="language-bar">
                         <option value="english">English - Default</option>
@@ -59,7 +59,7 @@
                 </div>
             </div>
         </div>
-        <div class="blank">
+        <div style="color:white;"class="blank">
             <p>space</p>
         </div>
     </div>

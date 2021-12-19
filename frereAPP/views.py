@@ -1,8 +1,8 @@
 from django.contrib import messages
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, HttpResponse, redirect
-from django.utils import translation
 from .models import *
-
+import webbrowser
 #Landing Page
 def index(request):
     return render(request, 'index.html')
@@ -14,12 +14,13 @@ def team(request):
     if request.method == 'POST':
         if not teams.objects.team_validator(request.POST['teamName']):
             messages.error(request, "Team Not Found")
+            messages.error(request, "No Spaces Allowed")
             return redirect("/")
         this_team = teams.objects.filter(name=request.POST['teamName'])
         request.session['user_id'] = this_team[0].id
     return redirect("/dashboard")
 
-#Dashboard + Query function ( Send Off)
+#Dashboard + Query function ( Send Off )
 def dashboard(request):
     if 'user_id' not in request.session:
         return redirect("/")
@@ -40,25 +41,29 @@ def result(request):
         'teams' : this_team[0]
     }
     if request.method == "POST":
+        
         # creating variables for the query
         result_searched = request.POST["search"]
         result_language = request.POST["language"]
         result_dept = request.POST["dept"]
         print(result_searched, result_language, result_dept)
-        
-        # language query variable
-        english_result = kitchenItems.objects.filter(item__contains=result_searched)
-        french_result = kitchenItems.objects.filter(item_french__contains=result_searched)
-        spanish_result = kitchenItems.objects.filter(item_spanish__contains=result_searched)
-        
     #QUERY BY SECTION
+        if result_searched == "perico":
+            return webbrowser.open("https://www.youtube.com/watch?v=NN6lOVpRRyo")
         
         # Querying for all departments
         if result_dept == "all":
-            # language query variable
+            
+            # language query variable ( these are local to this If statement )
             english_result = kitchenItems.objects.filter(item__contains=result_searched)
             french_result = kitchenItems.objects.filter(item_french__contains=result_searched)
             spanish_result = kitchenItems.objects.filter(item_spanish__contains=result_searched)
+            
+            #Item not in this section
+            if len(english_result) + len(french_result) + len(spanish_result) == 0:
+                messages.error(request, f' "{result_searched}" not in this section "{result_dept}" for "{result_language}" ')
+                return render(request, "result.html")
+            
             #query ALL:
             if result_searched== "ALL":
                 everything = kitchenItems.objects.all()
@@ -67,231 +72,436 @@ def result(request):
                         'something': everything
                     }
                 return render(request, "result.html", context)
+            
             #Empty Query in all Sections
             if result_searched == "":
                 messages.error(request, "Please enter a search term")
                 return render(request, "result.html")
             
-            #Wrongful Query
-            # if result_searched not in list_result:
-            #     messages.error(request, f"No results found for:  {result_searched} ")
-            #     return render(request, "result.html")
-            
-            #English Query in all Sections
-            if result_language == "english":
-                context = {
-                    'teams' : this_team[0],
-                    'something': english_result
-                }
-                return render(request, "result.html", context)
-            #French Query in all Sections
-            if result_language == "french":
-                context = {
-                    'teams' : this_team[0],
-                    'something': french_result
-                }
-                return render(request, "result_french.html", context)
-            
-            #Spanish Query in all Sections
-            if result_language == "spanish":
-                print("spanish start")
-                #Spanish to English Query
-                if result_searched == english_result:
-                    print("spanish 1 ")
+            #Check if item in english
+            if len(english_result) >=1:
+                
+                #English to English Query in all Sections
+                if result_language == "english":
                     context = {
-                    'teams' : this_team[0],
-                    'something': english_result
+                        'teams' : this_team[0],
+                        'something': english_result
                     }
                     return render(request, "result.html", context)
                 
-                #Spanish to French Query
-                if result_searched == french_result:
-                    print("spanish 2")
+                #Englisht to French Query in all Sections
+                if result_language == "french":
                     context = {
-                    'teams' : this_team[0],
-                    'something': french_result
+                        'teams' : this_team[0],
+                        'something': english_result
                     }
                     return render(request, "result_french.html", context)
-                    
-                else:
+                
+                #English to Spanish Query in all Sections
+                if result_language == "spanish":
                     print("spanish 3")
                     context = {
-                    'teams' : this_team[0],
-                    'something': spanish_result
+                        'teams' : this_team[0],
+                        'something': english_result
+                        }
+                    return render(request, "result_spanish.html", context)
+            
+            #Check if the item is in spanish
+            if len(spanish_result) >=1:
+                
+                #Spanish to English Query in all Sections
+                if result_language == "english":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': spanish_result
+                    }
+                    return render(request, "result.html", context)
+                
+                #Spanish to French Query in all Sections
+                if result_language == "french":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': spanish_result
+                    }
+                    return render(request, "result_french.html", context)
+                
+                #Spanish to Spanish Query in all Sections
+                if result_language == "spanish":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': spanish_result
                     }
                     return render(request, "result_spanish.html", context)
+            
+            #Check if the item is in french
+            if len(french_result) >=1:
+                #French to English Query in all Sections
+                if result_language == "english":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': french_result
+                    }
+                    return render(request, "result.html", context)
                 
+                #French to French Query in all Sections
+                if result_language == "french":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': french_result
+                    }
+                    return render(request, "result_french.html", context)
                 
-                # context = {
-                #     'teams' : this_team[0],
-                #     'something': spanish_result
-                # }
-                # return render(request, "result_spanish.html", context)
-        
-        
+                #French to Spanish Query in all Sections
+                if result_language == "spanish":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': french_result
+                    }
+                    return render(request, "result_spanish.html", context)
     #Querying by BOH Section
         if result_dept == "boh":
-            # language query variable
+            # language query variable ( these are local to this If statement )
             english_result = kitchenItems.objects.filter(section=sections.objects.get(name="BOH"), item__contains=result_searched)
             french_result = kitchenItems.objects.filter(section=sections.objects.get(name="BOH"), item_french__contains=result_searched)
             spanish_result = kitchenItems.objects.filter(section=sections.objects.get(name="BOH"), item_spanish__contains=result_searched)
             
+            #Item not in this section
+            if len(english_result) + len(french_result) + len(spanish_result) == 0:
+                messages.error(request, f' "{result_searched}" not in this section "{result_dept}" for "{result_language}" ')                
+                return render(request, "result.html")
             #Empty Query for BOH
             if result_searched == "":
                 messages.error(request, "Please enter a search term")
                 return render(request, "result.html")
             
-            #Wrongful Query
-            # if result_searched not in list_result:
-            #     messages.error(request, f"No results found for:  {result_searched} ")
-            #     return render(request, "result.html")
-            
-            #English Query for BOH
-            if result_language == "english":
+            #query ALL:
+            if result_searched== "ALL":
+                everything = kitchenItems.objects.all()
                 context = {
-                    'teams' : this_team[0],
-                    'something': english_result
-                }
+                        'teams' : this_team[0],
+                        'something': everything
+                    }
                 return render(request, "result.html", context)
             
-            #French Query for BOH
-            if result_language == "french":
-                context = {
-                    'teams' : this_team[0],
-                    'something': french_result
-                }
-                return render(request, "result_french.html", context)
+            #Empty Query in all Sections
+            if result_searched == "":
+                messages.error(request, "Please enter a search term")
+                return render(request, "result.html")
             
-            #Spanish Query for BOH
-            if result_language == "spanish":
-                context = {
-                    'teams' : this_team[0],
-                    'something': spanish_result
-                }
-                return render(request, "result_spanish.html", context)
+            #Check if item in english
+            if len(english_result) >=1:
+                
+                #English to English Query in all Sections
+                if result_language == "english":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': english_result
+                    }
+                    return render(request, "result.html", context)
+                
+                #Englisht to French Query in all Sections
+                if result_language == "french":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': english_result
+                    }
+                    return render(request, "result_french.html", context)
+                
+                #English to Spanish Query in all Sections
+                if result_language == "spanish":
+                    print("spanish 3")
+                    context = {
+                        'teams' : this_team[0],
+                        'something': english_result
+                        }
+                    return render(request, "result_spanish.html", context)
+            
+            #Check if the item is in spanish
+            if len(spanish_result) >=1:
+                
+                #Spanish to English Query in all Sections
+                if result_language == "english":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': spanish_result
+                    }
+                    return render(request, "result.html", context)
+                
+                #Spanish to French Query in all Sections
+                if result_language == "french":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': spanish_result
+                    }
+                    return render(request, "result_french.html", context)
+                
+                #Spanish to Spanish Query in all Sections
+                if result_language == "spanish":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': spanish_result
+                    }
+                    return render(request, "result_spanish.html", context)
+                
+            #Check if the item is in french
+            if len(french_result) >=1:
+                #French to English Query in all Sections
+                if result_language == "english":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': french_result
+                    }
+                    return render(request, "result.html", context)
+                
+                #French to French Query in all Sections
+                if result_language == "french":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': french_result
+                    }
+                    return render(request, "result_french.html", context)
+                
+                #French to Spanish Query in all Sections
+                if result_language == "spanish":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': french_result
+                    }
+                    return render(request, "result_spanish.html", context)
         
         #Query by FOH Section
         if result_dept == "foh":
-            #language query variable
+            # language query variable ( these are local to this If statement )
             english_result = kitchenItems.objects.filter(section=sections.objects.get(name="FOH"), item__contains=result_searched)
             french_result = kitchenItems.objects.filter(section=sections.objects.get(name="FOH"), item_french__contains=result_searched)
             spanish_result = kitchenItems.objects.filter(section=sections.objects.get(name="FOH"), item_spanish__contains=result_searched)
             
+            #Item not in this section
+            if len(english_result) + len(french_result) + len(spanish_result) == 0:
+                messages.error(request, f' "{result_searched}" not in this section "{result_dept}" for "{result_language}" ')
+                return render(request, "result.html")
             #Empty Query
             if result_searched == "":
                 messages.error(request, "Please enter a search term")
                 return render(request, "result.html")
             
-            #Wrongful Query
-            # if result_searched not in list_result:
-            #     messages.error(request, f"No results found for:  {result_searched} ")
-            #     return render(request, "result.html")
-            
-            #English Query for FOH
-            if result_language == "english":
+            #query ALL:
+            if result_searched== "ALL":
+                everything = kitchenItems.objects.all()
                 context = {
-                    'teams' : this_team[0],
-                    'something': english_result
-                }
+                        'teams' : this_team[0],
+                        'something': everything
+                    }
                 return render(request, "result.html", context)
             
-            #French Query for FOH
-            if result_language == "french":
-                context = {
-                    'teams' : this_team[0],
-                    'something': french_result
-                }
-                return render(request, "result_french.html", context)
+            #Empty Query in all Sections
+            if result_searched == "":
+                messages.error(request, "Please enter a search term")
+                return render(request, "result.html")
             
-            #spanish Query for FOH
-            if result_language == "spanish":
-                context = {
-                    'teams' : this_team[0],
-                    'something': spanish_result
-                }
-                return render(request, "result_spanish.html", context)
-        
+            #Check if item in english
+            if len(english_result) >=1:
+                
+                #English to English Query in all Sections
+                if result_language == "english":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': english_result
+                    }
+                    return render(request, "result.html", context)
+                
+                #Englisht to French Query in all Sections
+                if result_language == "french":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': english_result
+                    }
+                    return render(request, "result_french.html", context)
+                
+                #English to Spanish Query in all Sections
+                if result_language == "spanish":
+                    print("spanish 3")
+                    context = {
+                        'teams' : this_team[0],
+                        'something': english_result
+                        }
+                    return render(request, "result_spanish.html", context)
+            
+            #Check if the item is in spanish
+            if len(spanish_result) >=1:
+                
+                #Spanish to English Query in all Sections
+                if result_language == "english":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': spanish_result
+                    }
+                    return render(request, "result.html", context)
+                
+                #Spanish to French Query in all Sections
+                if result_language == "french":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': spanish_result
+                    }
+                    return render(request, "result_french.html", context)
+                
+                #Spanish to Spanish Query in all Sections
+                if result_language == "spanish":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': spanish_result
+                    }
+                    return render(request, "result_spanish.html", context)
+
+            #Check if the item is in french
+            if len(french_result) >=1:
+                #French to English Query in all Sections
+                if result_language == "english":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': french_result
+                    }
+                    return render(request, "result.html", context)
+                
+                #French to French Query in all Sections
+                if result_language == "french":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': french_result
+                    }
+                    return render(request, "result_french.html", context)
+                
+                #French to Spanish Query in all Sections
+                if result_language == "spanish":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': french_result
+                    }
+                    return render(request, "result_spanish.html", context)
         
         #Query by DMO Section
         if result_dept == "dmo":
             
-            #language query variable
+            # language query variable ( these are local to this If statement )
             english_result = kitchenItems.objects.filter(section=sections.objects.get(name="DMO"), item__contains=result_searched)
             french_result = kitchenItems.objects.filter(section=sections.objects.get(name="DMO"), item_french__contains=result_searched)
             spanish_result = kitchenItems.objects.filter(section=sections.objects.get(name="DMO"), item_spanish__contains=result_searched)
+            
+            #Item not in this section
+            if len(english_result) + len(french_result) + len(spanish_result) == 0:
+                messages.error(request, f' "{result_searched}" not in this section "{result_dept}" for "{result_language}" ')
+                return render(request, "result.html")
             #Empty Query
             if result_searched == "":
                 messages.error(request, "Please enter a search term")
                 return render(request, "result.html")
             
-            #Wrongful Query
-            # if result_searched not in list_result:
-            #     messages.error(request, f"No results found for:  {result_searched} ")
-            #     return render(request, "result.html")
-            
-            #English Query for DMO Section
-            if result_language == "english":
+            #query ALL:
+            if result_searched== "ALL":
+                everything = kitchenItems.objects.all()
                 context = {
-                    'teams' : this_team[0],
-                    'something': english_result
-                }
+                        'teams' : this_team[0],
+                        'something': everything
+                    }
                 return render(request, "result.html", context)
             
-            #French Query for DMO Section
-            if result_language == "french":
-                context = {
-                    'teams' : this_team[0],
-                    'something': french_result
-                }
-                return render(request, "result.html", context)
+            #Empty Query in all Sections
+            if result_searched == "":
+                messages.error(request, "Please enter a search term")
+                return render(request, "result.html")
             
-            #Spanish Query for DMO Section
-            if result_language == "spanish":
-                context = {
-                    'teams' : this_team[0],
-                    'something': spanish_result
-                }
-                return render(request, "result.html", context)
-        else:
-            messages.error(request, "No results found ")
-            return render(request, "result.html", context)
-    # return redirect("/dashboard")
-
-
-
-# #Landing page + translation Query from English to X
-# def english2X(request):
-#     if 'user_id' not in request.session:
-#         return redirect("/")
-#     this_team = teams.objects.filter(id = request.session['user_id'])
-#     context = {
-#         'teams' : this_team[0]
-#     }
-#     if request.method == "POST":
-#         # creating variables for the query
-#         result_searched = request.POST["search"]
-#         result_language = request.POST["language"]
-#         result_dept = request.POST["dept"]
-#         print(result_searched, result_language, result_dept)
+            #Check if item in english
+            if len(english_result) >=1:
+                
+                #English to English Query in all Sections
+                if result_language == "english":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': english_result
+                    }
+                    return render(request, "result.html", context)
+                
+                #Englisht to French Query in all Sections
+                if result_language == "french":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': english_result
+                    }
+                    return render(request, "result_french.html", context)
+                
+                #English to Spanish Query in all Sections
+                if result_language == "spanish":
+                    print("spanish 3")
+                    context = {
+                        'teams' : this_team[0],
+                        'something': english_result
+                        }
+                    return render(request, "result_spanish.html", context)
+            
+            #Check if the item is in spanish
+            if len(spanish_result) >=1:
+                #Spanish to English Query in all Sections
+                if result_language == "english":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': spanish_result
+                    }
+                    return render(request, "result.html", context)
+                
+                #Spanish to French Query in all Sections
+                if result_language == "french":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': spanish_result
+                    }
+                    return render(request, "result_french.html", context)
+                
+                #Spanish to Spanish Query in all Sections
+                if result_language == "spanish":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': spanish_result
+                    }
+                    return render(request, "result_spanish.html", context)
+            
+            #Check if the item is in french
+            if len(french_result) >=1:
+                #French to English Query in all Sections
+                if result_language == "english":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': french_result
+                    }
+                    return render(request, "result.html", context)
+                
+                #French to French Query in all Sections
+                if result_language == "french":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': french_result
+                    }
+                    return render(request, "result_french.html", context)
+                
+                #French to Spanish Query in all Sections
+                if result_language == "spanish":
+                    context = {
+                        'teams' : this_team[0],
+                        'something': french_result
+                    }
+                    return render(request, "result_spanish.html", context)
         
-#         # language query variable
-#         english_result = kitchenItems.objects.filter(item__contains=result_searched)
-#         french_result = kitchenItems.objects.filter(item_french__contains=result_searched)
-#         spanish_result = kitchenItems.objects.filter(item_spanish__contains=result_searched)
-#     #Query English to spanish
-#         if result_language == "spanish":
-#             english = kitchenItems.objects.filter(item__contains=result_searched)
-#             context = {
-#                     'teams' : this_team[0],
-#                     'something': english,
-#                 }
-#             return render(request, "result_spanish.html", context)
-#     return render(request, "result.html", context)
+    #Wrongful Query 
+        else:
+            messages.error(request, f'No results found for:  "{result_searched}" in {result_language} ')
+            return render(request, "result.html", context)
 
-#contact supervisors
+
+#Contact Card ( supervisor call list ) 
 def contact(request):
     return render(request, "contact.html")
 
+# Log Out
 def exit(request):
     request.session.clear()
     return redirect("/")
