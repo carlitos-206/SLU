@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%load static%}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/schedule.css' %}">
+    <script defer src='https://use.fontawesome.com/releases/v5.0.6/js/all.js'></script>
+    <script src="{% static 'js/index.js' %}"></script>
+    <link rel="icon" href="{% static 'img/handShake.png' %}">
+    <title>Bluebill & Mallard Schedule</title>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- DROP DOWN MENU STARTS -->
+
+    <!-- Hamburger Menu -->
+    <label for="toggle">
+        <i class="fas fa-bars hamburger"></i>
+    </label>
+
+    <!-- HEADER BEGINS -->
+    <header>
+        <input type="checkbox" id="toggle" name="toggle"> 
+                <nav class="navigation--responsive">
+                    <ul>
+                        <li>
+                            <a href="/dashboard">Translation Tool</a>
+                        </li>
+                        <li>
+                            <a href="/schedule">Schedules</a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="featureNotAvailable()">Union Board</a>
+                        </li>
+                        <li>
+                            <a href="/safety" >Safety</a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="featureNotAvailable()">Weekly Menu</a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="featureNotAvailable()">Weekly Email</a>
+                        </li>
+                    </ul>
+                </nav><!-- responsive nav ends-->
+    </header>
+    <table class="pure-table-odd pure-table pure-table-horizontal">
+        <thead>
+            <tr>
+                <th>WEEK OF: DEC 20</th>
+                <th></th>
+                <th>Regular</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="pure-table-odd pure-table pure-table-horizontal">
+                <td>ASSOCIATE NAME</td>
+                <td>POSITION</td>
+                <td>SCHEDULED TIME</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><span style="font-weight: bold;">BBM</span></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="pure-table pure-table-horizontal">
+                <td>Mike Case</td>
+                <td>Lead Cook</td>
+                <td>6:00AM - 2:30PM</td>
+            </tr>
+            <tr class="pure-table pure-table-horizontal">
+                <td>Anson Reyes</td>
+                <td>Lead Cook</td>
+                <td>7:00AM - 3:30PM</td>
+            </tr>
+            <tr class="pure-table pure-table-horizontal">
+                <td>Quinn Peel</td>
+                <td>Lead Cook</td>
+                <td>7:00AM - 3:30PM</td>
+            </tr>
+            <tr class="pure-table pure-table-horizontal">
+                <td>Sara Diaz Guzman</td>
+                <td>Lead FOH</td>
+                <td>7:00AM - 3:30PM</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="pure-table-odd pure-table pure-table-horizontal">
+                <td>Doug Turney</td>
+                <td>Cook, Heritage</td>
+                <td>7:00AM - 3:30PM</td>
+            </tr>
+            <tr class="pure-table-odd pure-table pure-table-horizontal">
+                <td>Elmo Rojas</td>
+                <td>Cook, Breakfast</td>
+                <td>6:00AM - 2:30PM</td>
+            </tr>
+            <tr class="pure-table-odd pure-table pure-table-horizontal">
+                <td>Andrew Shook</td>
+                <td>Cook</td>
+                <td>6:00AM - 2:30PM</td>
+            </tr>
+            <tr class="pure-table-odd pure-table pure-table-horizontal">
+                <td>Cat Wood</td>
+                <td>Cook, Breakfast & Burger</td>
+                <td>7:00AM - 3:30PM</td>
+            </tr>
+            <tr class="pure-table-odd pure-table pure-table-horizontal">
+                <td>Adam Weisman</td>
+                <td>Cook, Breakfast</td>
+                <td>6:00AM - 2:30PM</td>
+            </tr>
+            <tr class="pure-table-odd pure-table pure-table-horizontal">
+                <td>Jim Robbins</td>
+                <td>Cook</td>
+                <td>6:00AM - 2:30PM</td>
+            </tr>
+            <tr class="pure-table-odd pure-table pure-table-horizontal">
+                <td>Mark Kanton</td>
+                <td>Cook, Heritage</td>
+                <td>6:00AM - 2:30PM</td>
+            </tr>
+            <tr class="pure-table-odd pure-table pure-table-horizontal">
+                <td>Gabe Lewis Wright</td>
+                <td>Cook Lunch, Burger</td>
+                <td>7:00AM - 3:30PM</td>
+            </tr>
+            <tr class="pure-table-odd pure-table pure-table-horizontal">
+                <td>Angelo Quites</td>
+                <td>Cook</td>
+                <td>7:00AM - 3:30PM</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="pure-table pure-table-horizontal">
+                <td>Mameh Bah</td>
+                <td>DMO</td>
+                <td>7:00AM - 3:30PM</td>
+            </tr>
+            <tr class="pure-table pure-table-horizontal">
+                <td>Mamadou Bah</td>
+                <td>DMO</td>
+                <td>7:00AM - 3:30PM</td>
+            </tr>
+            <tr class="pure-table pure-table-horizontal">
+                <td>Ang Sherpa</td>
+                <td>DMO</td>
+                <td>7:00AM - 3:30PM</td>
+            </tr>
+            <tr class="pure-table pure-table-horizontal">
+                <td>Tresor Mpangala</td>
+                <td>DMO</td>
+                <td>7:00AM - 3:30PM</td>
+            </tr>
+            <tr class="pure-table pure-table-horizontal">
+                <td>Giresse Mantedaki</td>
+                <td>DMO</td>
+                <td>7:00AM - 3:30PM</td>
+            </tr>
+            <tr class="pure-table pure-table-horizontal">
+                <td>Lance Churchill</td>
+                <td>DMO, Porter</td>
+                <td>8:00AM - 4:30PM</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="pure-table-odd pure-table pure-table-horizontal">
+                <td>Danielle Krull</td>
+                <td>FOH</td>
+                <td>7:00AM - 3:30PM</td>
+            </tr>
+            <tr class="pure-table-odd pure-table pure-table-horizontal">
+                <td>Birdie Sanpavat</td>
+                <td>FOH</td>
+                <td>7:00AM - 3:30PM</td>
+            </tr>
+            <tr class="pure-table-odd pure-table pure-table-horizontal">
+                <td>Icy Ting</td>
+                <td>FOH</td>
+                <td>7:00AM - 3:30PM</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="pure-table pure-table-horizontal">
+                <td>Bryan Levinson</td>
+                <td>Prep Cook, Salad</td>
+                <td>7:00AM - 3:30PM</td>
+            </tr>
+            <tr class="pure-table pure-table-horizontal">
+                <td>Carlos Caceres Martinez</td>
+                <td>Prep Cook, Salad</td>
+                <td>7:00AM - 3:30PM</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="pure-table-odd pure-table pure-table-horizontal">
+                <td>Tony Bueno</td>
+                <td>Reciever</td>
+                <td>6:00AM - 2:30PM</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><span style="font-weight: bold;">COFFEE</span></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="pure-table pure-table-horizontal">
+                <td>Xavier Allen</td>
+                <td>Coffee</td>
+                <td></td>
+            </tr>
+            <tr class="pure-table pure-table-horizontal">
+                <td>Jordan Jackson</td>
+                <td>Coffee</td>
+                <td></td>
+            </tr>
+            <tr class="pure-table pure-table-horizontal">
+                <td>Kathlin Jeffries</td>
+                <td>Coffee</td>
+                <td></td>
+            </tr>
+            <tr class="pure-table pure-table-horizontal">
+                <td>Adrianna Woody</td>
+                <td>Coffee</td>
+                <td></td>
+            </tr>
+            <tr class="pure-table pure-table-horizontal">
+                <td>Sin Mey</td>
+                <td>Coffee</td>
+                <td></td>
+            </tr>
+            <tr class="pure-table pure-table-horizontal">
+                <td>Adriana Ramos</td>
+                <td>Coffee</td>
+                <td></td>
+            </tr>
+            <tr class="pure-table pure-table-horizontal">
+                <td>Jess Skepka</td>
+                <td>Coffee</td>
+                <td></td>
+            </tr>
+            <tr class="pure-table pure-table-horizontal">
+                <td>Matthew Topete</td>
+                <td>Coffee</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</body>
+</html>

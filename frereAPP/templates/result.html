@@ -6,9 +6,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/result.css' %}">
+    <link rel="icon" href="{% static 'img/handShake.png' %}">
+    <script defer src='https://use.fontawesome.com/releases/v5.0.6/js/all.js'></script>
+    <script src="{% static 'js/index.js' %}"></script>
     <title>{{teams.name}} | Result</title>
 </head>
 <body>
+    <!-- DROP DOWN MENU STARTS -->
+
+    <!-- Hamburger Menu -->
+    <label for="toggle">
+        <i class="fas fa-bars hamburger"></i>
+    </label>
+
+    <!-- HEADER BEGINS -->
+    <header>
+        <input type="checkbox" id="toggle" name="toggle"> 
+                <nav class="navigation--responsive">
+                    <ul>
+                        <li>
+                            <a href="/contact">Contact</a>
+                        </li>
+                        <li>
+                            <a href="/schedule">Schedules</a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="featureNotAvailable()">Union Board</a>
+                        </li>
+                        <li>
+                            <a href="/safety">Safety</a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="featureNotAvailable()">Weekly Menu</a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="featureNotAvailable()">Weekly Email</a>
+                        </li>
+                    </ul>
+                </nav><!-- responsive nav ends-->
+    </header>
+
     <div class="errors">
         {%if messages%}
         <ul>
