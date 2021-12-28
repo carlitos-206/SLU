@@ -2,14 +2,18 @@ from django.db import models
 
 
 #------- THIS IS DB FOR TEAMS ----------------
+
+######TEAM VALIDATION######
 class teamManager(models.Manager):
     def team_validator(self, teamName):
-        team_exist = teams.objects.filter(name__contains=teamName)
+        team_exist = teams.objects.filter(name=teamName)
         if team_exist:
             team_exist[0] == teamName
             return True
         else:
             return False
+
+###TEAM CREATION###
 class teams(models.Model):
     name = models.CharField(max_length=250)
     objects = teamManager()

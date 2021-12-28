@@ -1,8 +1,14 @@
+#Basic Django Packages/Libs
 from django.contrib import messages
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, HttpResponse, redirect
 from .models import *
-import webbrowser
+
+#Creates Plain Message box in python for validation instead of JS
+from tkinter import *
+from tkinter import messagebox
+
+
 #Landing Page
 def index(request):
     return render(request, 'index.html')
@@ -15,6 +21,7 @@ def team(request):
         if not teams.objects.team_validator(request.POST['teamName']):
             messages.error(request, "Team Not Found")
             messages.error(request, "No Spaces Allowed")
+            messages.error(request, "Case Sensitive")
             return redirect("/")
         this_team = teams.objects.filter(name=request.POST['teamName'])
         request.session['user_id'] = this_team[0].id
@@ -48,9 +55,14 @@ def result(request):
         result_dept = request.POST["dept"]
         print(result_searched, result_language, result_dept)
     #QUERY BY SECTION
-        if result_searched == "perico":
-            return webbrowser.open("https://www.youtube.com/watch?v=NN6lOVpRRyo")
         
+        if result_searched== "ALL":
+            everything = kitchenItems.objects.all()
+            context = {
+                        'teams' : this_team[0],
+                        'something': everything
+                    }
+            return render(request, "result.html", context)
         # Querying for all departments
         if result_dept == "all":
             
@@ -65,13 +77,6 @@ def result(request):
                 return render(request, "result.html")
             
             #query ALL:
-            if result_searched== "ALL":
-                everything = kitchenItems.objects.all()
-                context = {
-                        'teams' : this_team[0],
-                        'something': everything
-                    }
-                return render(request, "result.html", context)
             
             #Empty Query in all Sections
             if result_searched == "":
@@ -492,14 +497,40 @@ def result(request):
                     return render(request, "result_spanish.html", context)
         
     #Wrongful Query 
-        else:
-            messages.error(request, f'No results found for:  "{result_searched}" in {result_language} ')
-            return render(request, "result.html", context)
+    else:
+        messages.error(request, f'No results found for:  "{result_searched}" in {result_language} ')
+        return render(request, "result.html", context)
 
 
 #Contact Card ( supervisor call list ) 
 def contact(request):
-    return render(request, "contact.html")
+    if 'user_id' in request.session:
+        return render(request, "contact.html")
+    else:
+        return redirect("/")
+
+#Schedule Page Display only cafe in session
+def schedule(request):
+    if 'user_id' in request.session:
+        this_team = teams.objects.filter(id=request.session['user_id'])
+        #Verifies what cafe is in session and displays the schedule for that cafe only
+        if this_team[0].name == "Bluebill":
+            return render(request, "bluebill_schedule.html")
+        if this_team[0].name == "Nuage":
+            return render(request, "nuage_schedule.html")
+        if this_team[0].name == "Union":
+            return render(request, "union_schedule.html")
+        if this_team[0].name == "Root":
+            return render(request, "root_schedule.html")
+    else:
+        return redirect("/")
+
+#Safety Page
+def safety(request):
+    if 'user_id' in request.session:
+        return render(request, "safety.html")
+    else:
+        return redirect("/")
 
 # Log Out
 def exit(request):

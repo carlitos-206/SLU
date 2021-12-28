@@ -6,21 +6,116 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{% static 'img/handShake.png' %}">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+    <script defer src='https://use.fontawesome.com/releases/v5.0.6/js/all.js'></script>
+    <script src="{% static 'js/index.js' %}"></script>
     <title>Contact Card</title>
 </head>
 <body>
     <div class="wrapper">
-        <h1>Please refrain to company policy when contacting managers</h1>
-        <ul>
-            <li>Matt Anderson: <a href="mailto: carloscaceres041@gmail.com">Email</a> <a href="tel: +12066139348"> Call</a> <a href="sms: +12066139348">Text</a></li>
-        </ul>
-    </div>
-    <div class="home">
-        <form action="/dashboard">
-            {% csrf_token %}
-            <input type="hidden">
-            <button type="Submit" id="exit-btn">Home</button>
-        </form>
-    </div>
+<!-- DROP DOWN MENU STARTS -->
+
+    <!-- Hamburger Menu -->
+    <label for="toggle">
+        <i class="fas fa-bars hamburger"></i>
+    </label>
+
+    <!-- HEADER BEGINS -->
+    <header>
+        <input type="checkbox" id="toggle" name="toggle"> 
+                <nav class="navigation--responsive">
+                    <ul>
+                        <li>
+                            <a href="/dashboard">Translation Tool</a>
+                        </li>
+                        <li>
+                            <a href="/schedule">Schedules</a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="featureNotAvailable()">Union Board</a>
+                        </li>
+                        <li>
+                            <a href="/safety" onclick="featureNotAvailable()">Safety</a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="featureNotAvailable()">Weekly Menu</a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="featureNotAvailable()">Weekly Email</a>
+                        </li>
+                    </ul>
+                </nav><!-- responsive nav ends-->
+    </header>
+        
+        <div class="title-head">
+            <h1>Contact Management at least 2 hours before your scheduled shift</h1>
+        </div>
+        <table class="pure-table-odd pure-table pure-table-horizontal">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Title</th>
+                    <th>Phone#</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="pure-table-odd pure-table pure-table-horizontal">
+                    <td>Morgan Clements</td>
+                    <td>Chef de Cuisine</td>
+                    <td>(206) 914-6322</td>
+                    <td><a href="tel:12069146322">Call</a> <a href="sms:12069146322">Text</a> <a href="#" onclick="missingEmail()">Email</a></td>
+                </tr>
+                <tr class="pure-table pure-table-horizontal">
+                    <td>Beth Matthiessen</td>
+                    <td>Chef de Cuisine, Pastry</td>
+                    <td>(206) 683-7653</td>
+                    <td><a href="tel:12066837653">Call</a> <a href="sms:12066837653">Text</a> <a href="#" onclick="missingEmail()">Email</a></td>
+                </tr>
+                <tr class="pure-table-odd pure-table pure-table-horizontal">
+                    <td>Eric Dupuy</td>
+                    <td></td>
+                    <td>(206) 619-7075</td>
+                    <td><a href="tel:12066197075">Call</a> <a href="sms:12066197075">Text</a> <a href="#" onclick="missingEmail()">Email</a></td>
+                </tr>
+                <tr class="pure-table pure-table-horizontal">
+                    <td>Jaime Jones</td>
+                    <td>Cafe Manager</td>
+                    <td>(407) 668-5430</td>
+                    <td><a href="tel:14076685430">Call</a> <a href="sms:14076685430">Text</a> <a href="#" onclick="missingEmail()">Email</a></td>
+                </tr>
+                <tr class="pure-table-odd pure-table pure-table-horizontal">
+                    <td>Terrie Robbinson</td>
+                    <td>Sous Chef</td>
+                    <td>(206) 883-5219</td>
+                    <td><a href="tel:12068835219">Call</a> <a href="sms:12068835219">Text</a> <a href="#" onclick="missingEmail()">Email</a></td>
+                </tr>
+                <tr class="pure-table pure-table-horizontal">
+                    <td>Matt Anderson</td>
+                    <td>Sous Chef</td>
+                    <td>(206) 245-7791</td>
+                    <td><a href="tel:12062457791">Call</a> <a href="sms:12062457791">Text</a> <a href="mailto:matthewan@google.com">Email</a></td>
+                </tr>
+                <tr class="pure-table-odd pure-table pure-table-horizontal">
+                    <td>Tobias Sherwin</td>
+                    <td>Asst. Cafe Manager</td>
+                    <td>(206) 475-5933</td>
+                    <td><a href="tel:12064755933">Call</a> <a href="sms:12064755933">Text</a> <a href="#" onclick="missingEmail()">Email</a></td>
+                </tr>
+                <tr class="pure-table pure-table-horizontal">
+                    <td>David Lorenz</td>
+                    <td>Cafe Manager</td>
+                    <td>(206) 940-2991</td>
+                    <td><a href="tel:12069402991">Call</a> <a href="sms:12069402991">Text</a> <a href="#" onclick="missingEmail()">Email</a></td>
+                </tr>
+                <tr class="pure-table-odd pure-table pure-table-horizontal">
+                    <td>Camille Sousa</td>
+                    <td>General Manager</td>
+                    <td>(408) 313-5587</td>
+                    <td><a href="tel:14083135587">Call</a> <a href="sms:14083135587">Text</a> <a href="#" onclick="missingEmail()">Email</a></td>
+                </tr>
+            </tbody>
+        </div>
 </body>
 </html>

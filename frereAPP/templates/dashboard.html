@@ -7,9 +7,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
     <link rel="icon" href="{% static 'img/handShake.png' %}">
+    <script defer src='https://use.fontawesome.com/releases/v5.0.6/js/all.js'></script>
+    <script src="{% static 'js/index.js' %}"></script>
     <title>Mon Frère | {{teams.name}} | Welcome</title>
 </head>
 <body>
+    <h1>{{teams.name}} Cafe</h1>
+<!-- DROP DOWN MENU STARTS -->
+
+    <!-- Hamburger Menu -->
+    <label for="toggle">
+        <i class="fas fa-bars hamburger"></i>
+    </label>
+
+    <!-- HEADER BEGINS -->
+    <header>
+        <input type="checkbox" id="toggle" name="toggle"> 
+                <nav class="navigation--responsive">
+                    <ul>
+                        <li>
+                            <a href="/contact">Contact</a>
+                        </li>
+                        <li>
+                            <a href="/schedule">Schedules</a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="featureNotAvailable()">Union Board</a>
+                        </li>
+                        <li>
+                            <a href="/safety">Safety</a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="featureNotAvailable()">Weekly Menu</a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="featureNotAvailable()">Weekly Email</a>
+                        </li>
+                    </ul>
+                </nav><!-- responsive nav ends-->
+    </header>
+
+
+
+    <!-- ENDS -->
     <div class="errors">
         {%if messages%}
         <ul>
@@ -20,9 +60,10 @@
         {%endif%}
     </div>
     <div class="wrapper">
+        </div>
         <div class="box">
             <div class="header">
-                <h2>Welcome {{teams.name}} Cafe Member</h2>
+                <h2>Translation Tool</h2>
                 <form action="/result" method="POST">
                     {%csrf_token%}
                     <label for="search" id="label-search">Search:</label>
@@ -44,19 +85,6 @@
                     </select>
                     <button type="submit" id="submit-btn">Search</button>
                 </form>
-                <div class="contact">
-                    <form action="/contact">
-                        {% csrf_token %}
-                        <input type="hidden">
-                        <button type="Submit" id="contact-btn">Contact Card</button>
-                    </form>
-                </div>
-                <div class="exit">
-                    <form action="/exit">
-                        {% csrf_token %}
-                        <input type="hidden">
-                        <button type="Submit" id="exit-btn">Exit</button>
-                    </form>
                 </div>
             </div>
         </div>

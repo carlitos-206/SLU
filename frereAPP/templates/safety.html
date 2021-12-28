@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static%}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/schedule.css' %}">
+    <link rel="icon" href="{% static 'img/handShake.png' %}">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
+    <script defer src='https://use.fontawesome.com/releases/v5.0.6/js/all.js'></script>
+    <script src="{% static 'js/index.js' %}"></script>
+    <title>Safety</title>
+</head>
+<body>
+<!-- DROP DOWN MENU STARTS -->
+
+    <!-- Hamburger Menu -->
+    <label for="toggle">
+        <i class="fas fa-bars hamburger"></i>
+    </label>
+
+    <!-- HEADER BEGINS -->
+    <header>
+        <input type="checkbox" id="toggle" name="toggle"> 
+                <nav class="navigation--responsive">
+                    <ul>
+                        <li>
+                            <a href="/safety">Translation Tool</a>
+                        </li>
+                        <li>
+                            <a href="/contact">Contact</a>
+                        </li>
+                        <li>
+                            <a href="/schedule">Schedules</a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="featureNotAvailable()">Union Board</a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="featureNotAvailable()">Weekly Menu</a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="featureNotAvailable()">Weekly Email</a>
+                        </li>
+                    </ul>
+                </nav><!-- responsive nav ends-->
+    </header>
+    <h1>TEMPS</h1>
+    <table class="pure-table-odd pure-table pure-table-horizontal">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Cook Temp</th>
+                <th>Reheat</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="pure-table-odd pure-table pure-table-horizontal">
+                <td>Vegetable, Grains and Legumes</td>
+                <td>135&deg;F</td>
+                <td>165&deg;F (Under 2 Hours)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="pure-table-odd pure-table pure-table-horizontal">
+                <td>Fish and Shellfish</td>
+                <td>145&deg;F</td>
+                <td>165&deg;F (Under 2 Hours)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="pure-table-odd pure-table pure-table-horizontal">
+                <td>Whole Muscle Beef, pork, Veal & Lamb</td>
+                <td>145&deg;F</td>
+                <td>165&deg;F (Under 2 Hours)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="pure-table-odd pure-table pure-table-horizontal">
+                <td>Ostrich and Emu</td>
+                <td>155&deg;F</td>
+                <td>165&deg;F (Under 2 Hours)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="pure-table-odd pure-table pure-table-horizontal">
+                <td>Ground Beef, Pork, Veal & Lamb</td>
+                <td>160&deg;F</td>
+                <td>165&deg;F (Under 2 Hours)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="pure-table-odd pure-table pure-table-horizontal">
+                <td>Egg Dishes</td>
+                <td>160&deg;F</td>
+                <td>165&deg;F (Under 2 Hours)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="pure-table-odd pure-table pure-table-horizontal">
+                <td>Poultry: Chicken, Turkey</td>
+                <td>165&deg;F</td>
+                <td>165&deg;F (Under 2 Hours)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="pure-table-odd pure-table pure-table-horizontal">
+                <td>Ground Poultry: Chicken, Turkey</td>
+                <td>135&deg;F</td>
+                <td>165&deg;F (Under 2 Hours)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="pure-table-odd pure-table pure-table-horizontal">
+                <td>Stuffed Foods</td>
+                <td>165&deg;F</td>
+                <td>165&deg;F (Under 2 Hours)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
