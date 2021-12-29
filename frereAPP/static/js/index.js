@@ -11,5 +11,5 @@ function missingEmail(){
   alert("Email not available, Call or Text your manager.");
 }
 function featureNotAvailable(){
-  alert("Feature not available yet.");
+  alert("Feature Unavailable.");
 }

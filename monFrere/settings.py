@@ -25,7 +25,7 @@ SECRET_KEY = 'k92awqs10xn5%u4zbcd9ec9&15nin&qvfsn6lzendz%7#_0!tm'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['taste.ngrok.io','localhost']
+ALLOWED_HOSTS = ['taste.ngrok.io','localhost', 'vibez.ngrok.io']
 
 
 # Application definition
@@ -113,6 +113,14 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+#EMAIL SETTINGS
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'carlitos.206.spam@gmail.com'
+EMAIL_HOST_PASSWORD = 'spamPASSWORD!@#123!'
 
 
 # Static files (CSS, JavaScript, Images)

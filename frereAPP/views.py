@@ -4,10 +4,12 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, HttpResponse, redirect
 from .models import *
 
-#Creates Plain Message box in python for validation instead of JS
-from tkinter import *
-from tkinter import messagebox
+#device collection packages
+import socket
+from user_agents import parse
 
+#Email Pacakage
+from django.core.mail import send_mail
 
 #Landing Page
 def index(request):
@@ -25,13 +27,33 @@ def team(request):
             return redirect("/")
         this_team = teams.objects.filter(name=request.POST['teamName'])
         request.session['user_id'] = this_team[0].id
+    #Collection Point
+    user_info = request.headers['User-Agent']
+    ua_string = str(user_info)
+    user_agent = parse(ua_string)
+    device_name = socket.gethostname()
+    send_mail(
+        f"Team {this_team[0].name} has logged in", #Email Subject
+        f''' The '{this_team[0].name}' Cafe is in a session using:, 
+            Device: '{user_agent.device.family}' ON '{user_agent.browser.family}' Bowser''', #Email Body
+        'carlitos.206.spam@gmail.com', #From Email
+        ['carlitos.206.spam@gmail.com'], #To Email
+        fail_silently=False,
+    )
+    print(f"\nEmail Sent\n {this_team[0].name} Cafe Memeber Logged In\n")
     return redirect("/dashboard")
 
 #Dashboard + Query function ( Send Off )
 def dashboard(request):
     if 'user_id' not in request.session:
         return redirect("/")
+    #Collection Point
+    user_info = request.headers['User-Agent']
+    ua_string = str(user_info)
+    user_agent = parse(ua_string)
+    device_name = socket.gethostname()
     this_team = teams.objects.filter(id = request.session['user_id'])
+    print(f"\nThe {this_team[0].name} Cafe is in a session using:\n", f"\nDevice: '{user_agent.device.family}' ON '{user_agent.browser.family}' Bowser\n") 
     context = {
         'teams' : this_team[0]
     }
@@ -54,8 +76,13 @@ def result(request):
         result_language = request.POST["language"]
         result_dept = request.POST["dept"]
         print(result_searched, result_language, result_dept)
+        
+        #Collection Point + Email Send Off
+        collectionMail(a=this_team[0].name,b=result_searched,c=result_language,d=result_dept, e="Translation")
+    
     #QUERY BY SECTION
         
+        #View Full Index    
         if result_searched== "ALL":
             everything = kitchenItems.objects.all()
             context = {
@@ -120,6 +147,7 @@ def result(request):
                         'teams' : this_team[0],
                         'something': spanish_result
                     }
+                    print(spanish_result[0].item)
                     return render(request, "result.html", context)
                 
                 #Spanish to French Query in all Sections
@@ -496,15 +524,20 @@ def result(request):
                     }
                     return render(request, "result_spanish.html", context)
         
-    #Wrongful Query 
+    #Wrongful Query (Edge Case)
     else:
-        messages.error(request, f'No results found for:  "{result_searched}" in {result_language} ')
+        result_searched = request.POST["search"]
+        result_language = request.POST["language"]
+        result_dept = request.POST["dept"]
+        messages.error(request, f'No results found for:  "{result_searched}" in {result_language} for Section {result_dept}')
         return render(request, "result.html", context)
 
 
 #Contact Card ( supervisor call list ) 
 def contact(request):
     if 'user_id' in request.session:
+        this_team = teams.objects.filter(id=request.session['user_id'])
+        collectionMail(a=this_team[0].name,b="Contact List", c="Contact List", d="Information", e="Information")
         return render(request, "contact.html")
     else:
         return redirect("/")
@@ -515,12 +548,17 @@ def schedule(request):
         this_team = teams.objects.filter(id=request.session['user_id'])
         #Verifies what cafe is in session and displays the schedule for that cafe only
         if this_team[0].name == "Bluebill":
+            this_team = teams.objects.filter(id=request.session['user_id'])
+            collectionMail(a="Bluebill",b="Schedules", c="Schedules", d="Information", e="Information")
             return render(request, "bluebill_schedule.html")
         if this_team[0].name == "Nuage":
+            collectionMail(a="Nuage",b="Schedules", c="Schedules", d="Information", e="Information")
             return render(request, "nuage_schedule.html")
         if this_team[0].name == "Union":
+            collectionMail(a="Union",b="Schedules", c="Schedules", d="Information", e="Information")
             return render(request, "union_schedule.html")
         if this_team[0].name == "Root":
+            collectionMail(a="Root",b="Schedules", c="Schedules", d="Information", e="Information")
             return render(request, "root_schedule.html")
     else:
         return redirect("/")
@@ -528,6 +566,8 @@ def schedule(request):
 #Safety Page
 def safety(request):
     if 'user_id' in request.session:
+        this_team = teams.objects.filter(id=request.session['user_id'])
+        collectionMail(a=this_team[0].name,b="Safety", c="Temps", d="Information", e="Information")
         return render(request, "safety.html")
     else:
         return redirect("/")
@@ -536,3 +576,20 @@ def safety(request):
 def exit(request):
     request.session.clear()
     return redirect("/")
+
+
+#Send Email Functions
+def collectionMail(a,b,c,d,e):
+    team_name = a
+    searched = b
+    language_result = c
+    dept = d
+    tool = e
+    send_mail(
+        f'The {team_name} Cafe', #Email Subject
+        f''' {tool} Tool: "{searched}" in "{language_result}" inside the "{dept}" Department.''', #Email Message
+        'carlitos.206.spam@gmail.com', #From Email
+        ['carlitos.206.spam@gmail.com'], #To Email
+        fail_silently=False,
+            )
+    print("\nEmail Sent\n")

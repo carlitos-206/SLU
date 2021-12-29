@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{% static 'css/result.css' %}">
     <link rel="icon" href="{% static 'img/handShake.png' %}">
     <script defer src='https://use.fontawesome.com/releases/v5.0.6/js/all.js'></script>
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
     <script src="{% static 'js/index.js' %}"></script>
     <title>{{teams.name}} | Result</title>
 </head>
@@ -50,7 +51,7 @@
         {%if messages%}
         <ul>
             {%for message in messages%}
-            <li>{{message}}</li>
+            <li><h3>{{message}}</h3></li>
             {%endfor%}
         </ul>
         {%endif%}
@@ -96,7 +97,7 @@
                 </div>
             </div>
         </div>
-        <div style="color:white;"class="blank">
+        <div style="color:rgb(160, 222, 135);"class="blank">
             <p>space</p>
         </div>
     </div>
