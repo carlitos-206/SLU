@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'k92awqs10xn5%u4zbcd9ec9&15nin&qvfsn6lzendz%7#_0!tm'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['taste.ngrok.io','localhost', 'vibez.ngrok.io']
 
@@ -123,7 +123,17 @@ EMAIL_HOST_USER = 'carlitos.206.spam@gmail.com'
 EMAIL_HOST_PASSWORD = 'spamPASSWORD!@#123!'
 
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
