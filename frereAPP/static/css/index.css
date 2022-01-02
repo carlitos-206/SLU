@@ -237,10 +237,128 @@ button {
 }
 
 /*Small Monitor Screen */
-@media only screen and (min-width:1280px){}
+@media only screen and (min-width:1280px){
+    .wrapper{
+        display: flex;
+        justify-content: center;
+    }
+    .box {
+        border: 1px solid black;
+        position: relative;
+        top: 150px;
+        height: 10rem;
+        width: 25%;
+        border-radius:5%;
+        background-color: rgba(128, 128, 128, 0.466) ;
+        backdrop-filter: blur(10px)
+}
+    .box-header{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        font-size: 4vh;
+    }
+    #teamName{
+        border: coral 1px solid;
+        width: 80%;
+        position: relative;
+        top: 15px;
+        left: 10%;
+        height: 7vh;
+        font-size: 3vh;
+        text-align: center;
+    }
+button {
+    position: relative;
+    width: 20%;
+    height: 4vh;
+    top: 30px;
+    left: 40%;
+}
+}
 /* med Monitor Screen */
-@media only screen and (min-width:1440px){}
+@media only screen and (min-width:1440px){
+    .wrapper{
+        display: flex;
+        justify-content: center;
+    }
+    .box {
+        border: 1px solid black;
+        position: relative;
+        top: 150px;
+        height: 16rem;
+        width: 25%;
+        border-radius:5%;
+        background-color: rgba(128, 128, 128, 0.466) ;
+        backdrop-filter: blur(10px)
+}
+    .box-header{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        font-size: 4vh;
+    }
+    #teamName{
+        border: coral 1px solid;
+        width: 80%;
+        position: relative;
+        top: 20px;
+        left: 10%;
+        height: 7vh;
+        font-size: 3vh;
+        text-align: center;
+    }
+button {
+    position: relative;
+    width: 20%;
+    height: 4vh;
+    top: 60px;
+    left: 40%;
+    font-size: 1.5rem;
+    border-radius: 5%;
+}
+}
 
 
 /* Large Monitor */
-@media only screen and (min-width:1920px){}
+@media only screen and (min-width:1920px){
+    .wrapper{
+        display: flex;
+        justify-content: center;
+    }
+    .box {
+        border: 1px solid black;
+        position: relative;
+        top: 150px;
+        height: 16rem;
+        width: 25%;
+        border-radius:5%;
+        background-color: rgba(128, 128, 128, 0.466) ;
+        backdrop-filter: blur(10px)
+}
+    .box-header{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        font-size: 4vh;
+    }
+    #teamName{
+        border: coral 1px solid;
+        width: 80%;
+        position: relative;
+        top: 20px;
+        left: 10%;
+        height: 7vh;
+        font-size: 3vh;
+        text-align: center;
+    }
+button {
+    position: relative;
+    width: 20%;
+    height: 4vh;
+    top: 60px;
+    left: 40%;
+    font-size: 1.5rem;
+    border-radius: 5%;
+}
+}

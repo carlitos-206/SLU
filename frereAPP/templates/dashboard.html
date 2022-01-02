@@ -7,45 +7,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
     <link rel="icon" href="{% static 'img/handShake.png' %}">
-    <script defer src='https://use.fontawesome.com/releases/v5.0.6/js/all.js'></script>
-    <script src="{% static 'js/index.js' %}"></script>
+    <!-- Packages for the Menu -->
+        <!-- Pure CSS Framework -->
+        <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
+        <!-- BootStrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+        </script>
+        <!-- OG -->
+        <script src="{% static 'js/index.js' %}"></script>
     <title>Mon Frère | {{teams.name}} | Welcome</title>
 </head>
 <body>
+    <p hidden id="cafeName">{{teams.name}}</p>
+    
     <h1>{{teams.name}} Cafe</h1>
 <!-- DROP DOWN MENU STARTS -->
+    <nav role="navigation">
+        <div id="menuToggle">
+            <!--
+            A fake / hidden checkbox is used as click reciever,
+            so you can use the :checked selector on it.
+            -->
+        <input type="checkbox" >
+        
+            <!--
+            Some spans to act as a hamburger.
+            
+            They are acting like a real hamburger,
+            not that McDonalds stuff.
+            -->
+        <span></span>
+        <span></span>
+        <span></span>
+        
+            <!--
+            Too bad the menu has to be inside of the button
+            but hey, it's pure CSS magic.
+            -->
+        <ul id="menu" class="nav nav-pills">
+            <li id="item_1" class="nav-item">
+                <a href="/contact" class="nav-link">Contact</a>
+            </li>
+            <li id="item_2" class="nav-item">
+                <a href="/schedule" class="nav-link" onclick="menuLimits()">Schedule</a>
+            </li>
+            <li id="item_3"class="nav-item">
+                <a href="/safety" class="nav-link">Safety</a>
+            </li>
+            <li id="item_4" class="nav-item">
+                <a href="#" class="nav-link"  onclick="featureNotAvailable()">Union Board</a>
+            </li>
+            <li id="item_5" class="nav-item dropdown" data-bs-auto-close="true" >
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" onclick="menuLimits(), dontDrop()">Weekly Menu</a>
+                <div id="drop-1" class="dropdown-menu">
+                    <a class="dropdown-item" href="#" onclick="featureNotAvailable()">Heritage Station</a>
+                    <a class="dropdown-item" href="#" onclick="featureNotAvailable()">Burger Station</a>
+                    <a class="dropdown-item" href="#">Salad Station</a>
+                </div>
+            </li>
+            <li id="item_6" class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Weekly Email</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#" >This Week's Email</a>
+                        <a class="dropdown-item" href="#">Previous Week</a>
+                    </div>
+            </li>
+        </ul>
+        </div>
+    </nav>
 
-    <!-- Hamburger Menu -->
-    <label for="toggle">
-        <i class="fas fa-bars hamburger"></i>
-    </label>
 
-    <!-- HEADER BEGINS -->
-    <header>
-        <input type="checkbox" id="toggle" name="toggle"> 
-                <nav class="navigation--responsive">
-                    <ul>
-                        <li>
-                            <a href="/contact">Contact</a>
-                        </li>
-                        <li>
-                            <a href="/schedule">Schedules</a>
-                        </li>
-                        <li>
-                            <a href="#" onclick="featureNotAvailable()">Union Board</a>
-                        </li>
-                        <li>
-                            <a href="/safety">Safety</a>
-                        </li>
-                        <li>
-                            <a href="#" onclick="featureNotAvailable()">Weekly Menu</a>
-                        </li>
-                        <li>
-                            <a href="#" onclick="featureNotAvailable()">Weekly Email</a>
-                        </li>
-                    </ul>
-                </nav><!-- responsive nav ends-->
-    </header>
 
 
 
@@ -59,7 +93,7 @@
         </ul>
         {%endif%}
     </div>
-    <div class="wrapper">
+    <div  style="display: none" class="wrapper">
         </div>
         <div class="box">
             <div class="header">
