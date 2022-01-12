@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, HttpResponse, redirect
 from .models import *
+import urllib.request
 
 #device collection packages
 import socket
@@ -32,6 +33,9 @@ def team(request):
     ua_string = str(user_info)
     user_agent = parse(ua_string)
     device_name = socket.gethostname()
+    url='https://www.taste.ngrok.io'
+    check_ip = urllib.request.Request(url, origin_req_host=request.META['HTTP_ORIGIN'])
+    print(check_ip)
     send_mail(
         f"Team {this_team[0].name} has logged in", #Email Subject
         f''' The '{this_team[0].name}' Cafe is in a session using:, 
@@ -40,7 +44,8 @@ def team(request):
         ['carlitos.206.spam@gmail.com'], #To Email
         fail_silently=False,
     )
-    print(f"\nEmail Sent\n {this_team[0].name} Cafe Memeber Logged In\n")
+    string_ip = str(check_ip)
+    print(f"\nEmail Sent\n {this_team[0].name} Cafe Memeber Logged In IP:{string_ip}")
     return redirect("/dashboard")
 
 #Dashboard + Query function ( Send Off )

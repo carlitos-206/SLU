@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% load static%}
+    {% load static %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
     <link rel="icon" href="{% static 'img/handShake.png' %}">
+    
     <!-- Packages for the Menu -->
         <!-- Pure CSS Framework -->
         <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
@@ -21,9 +22,8 @@
     <title>Mon Frère | {{teams.name}} | Welcome</title>
 </head>
 <body>
-    <p hidden id="cafeName">{{teams.name}}</p>
-    
-    <h1>{{teams.name}} Cafe</h1>
+    <p hidden id="cafeNameJS">{{teams.name}}</p>
+    <h1 id="cafeName">{{teams.name}} Cafe</h1>
 <!-- DROP DOWN MENU STARTS -->
     <nav role="navigation">
         <div id="menuToggle">
@@ -40,7 +40,7 @@
             not that McDonalds stuff.
             -->
         <span></span>
-        <span></span>
+        <span></span> 
         <span></span>
         
             <!--
@@ -52,16 +52,16 @@
                 <a href="/contact" class="nav-link">Contact</a>
             </li>
             <li id="item_2" class="nav-item">
-                <a href="/schedule" class="nav-link" onclick="menuLimits()">Schedule</a>
+                <a id="schedule_js" href="/schedule" class="nav-link" onclick="scheduleLimits()">Schedule</a>
             </li>
             <li id="item_3"class="nav-item">
                 <a href="/safety" class="nav-link">Safety</a>
             </li>
             <li id="item_4" class="nav-item">
-                <a href="#" class="nav-link"  onclick="featureNotAvailable()">Union Board</a>
+                <a href="#" class="nav-link" onclick="featureNotAvailable()">Union Board</a>
             </li>
             <li id="item_5" class="nav-item dropdown" data-bs-auto-close="true" >
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" onclick="menuLimits(), dontDrop()">Weekly Menu</a>
+                <a id="menu_drop_js" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" onclick="menuLimits()">Weekly Menu</a>
                 <div id="drop-1" class="dropdown-menu">
                     <a class="dropdown-item" href="#" onclick="featureNotAvailable()">Heritage Station</a>
                     <a class="dropdown-item" href="#" onclick="featureNotAvailable()">Burger Station</a>
@@ -71,8 +71,8 @@
             <li id="item_6" class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Weekly Email</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#" >This Week's Email</a>
-                        <a class="dropdown-item" href="#">Previous Week</a>
+                        <a class="dropdown-item" href="#" onclick="featureNotAvailable()" >This Week's Email</a>
+                        <a class="dropdown-item" href="#" onclick="featureNotAvailable()">Previous Week</a>
                     </div>
             </li>
         </ul>
@@ -93,32 +93,30 @@
         </ul>
         {%endif%}
     </div>
-    <div  style="display: none" class="wrapper">
-        </div>
+
         <div class="box">
             <div class="header">
                 <h2>Translation Tool</h2>
-                <form action="/result" method="POST">
-                    {%csrf_token%}
-                    <label for="search" id="label-search">Search:</label>
-                    <input type="text" name="search" id="searchBar" placeholder="Enter Item">
-                    <label  for="language" id="label-language">Language:</label>
-                    <select 
-                        name="language" id="language-bar">
-                        <option value="english">English - Default</option>
-                        <option value="french">Françaises</option>
-                        <option value="spanish">Español</option>
-                        <!-- <option value="nepali">नेपाली</option> -->
-                    </select>
-                    <label for="dept" id="label-dept">Section:</label>
-                    <select name="dept" id="kitchenArea">
-                        <option value="all">All Sections</option>
-                        <option value="dmo">DMO</option>
-                        <option value="boh">Back of House</option>
-                        <option value="foh">Front of House</option>
-                    </select>
-                    <button type="submit" id="submit-btn">Search</button>
-                </form>
+                    <form action="/result" method="POST">
+                        {%csrf_token%}
+                        <label for="search" id="label-search">Search:</label>
+                        <input type="text" name="search" id="searchBar" placeholder="Enter Item">
+                        <label  for="language" id="label-language">Language:</label>
+                        <select 
+                            name="language" id="language-bar">
+                            <option value="english">English - Default</option>
+                            <option value="french">Françaises</option>
+                            <option value="spanish">Español</option>
+                        </select>
+                        <label for="dept" id="label-dept">Section:</label>
+                        <select name="dept" id="kitchenArea">
+                            <option value="all">All Sections</option>
+                            <option value="dmo">DMO</option>
+                            <option value="boh">Back of House</option>
+                            <option value="foh">Front of House</option>
+                        </select>
+                        <button type="submit" id="submit-btn">Search</button>
+                    </form>
                 </div>
             </div>
         </div>
