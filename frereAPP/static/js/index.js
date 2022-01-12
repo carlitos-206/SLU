@@ -4,23 +4,24 @@ function missingEmail(){
 function featureNotAvailable(){
   alert("Feature Unavailable.");
 }
-function menuLimits(){
-  var cafeName = document.getElementById("cafeName").textContent;
-  console.log(cafeName);
-  if(cafeName != "Bluebill"){
-    alert("Menu not available for this cafe.")
-    document.getElementsByClassName("nav-link").setAttribute("href", "javascript:void(0)");
 
-  }else{
-    var route_name = getElementsByClassName("nav-link").textContent.toLowerCase();
-    var route = document.getElementsByClassName("nav-link");
-    route.href = String(route_name);
-  } 
-}
-function dontDrop(){
-  var cafeName = document.getElementById("cafeName").textContent;
-  var dropMenu = document.getElementById("drop-1");
+function scheduleLimits(){
+  var cafeName = document.getElementById("cafeNameJS").textContent;
+  var blocked = document.getElementById("schedule_js");
   if(cafeName != "Bluebill"){
-    dropMenu.style.display = "none";
+    blocked.setAttribute("href", "javascript:void(0)");
+    alert("Schedule not available for this cafe. Contact your manager.");
   }
 }
+
+function menuLimits(){
+  var cafeName = document.getElementById("cafeNameJS").textContent;
+  var blocked = document.getElementById("menu_drop_js");
+  var dropMenu = document.getElementById("drop-1"); 
+  console.log(cafeName);
+  if(cafeName != "Bluebill"){
+      blocked.setAttribute("href", "javascript:void(0)");
+      dropMenu.setAttribute("style", "display:none");
+      alert("Menu not available for this cafe.");
+      }
+  }
